@@ -33,3 +33,59 @@
    ADMIN_PASSWORD=ваш_пароль
 4. Запустіть бота:
    python app.py
+
+📂 Структура проекту (Діаграма архітектури)
+graph TD
+    A[Користувач Telegram] --> B[Telegram Bot]
+    B --> C[Python Application]
+    C --> D[SQLite Database]
+    C --> E[Payment Gateway API]
+    C --> F[Admin Panel]
+    F --> G[Cloud Storage for Media]
+    D --> H[(Backup System)]
+
+Компоненти:
+
+1. Python Application (aiogram)
+2. SQLite Database (зберігання товарів/замовлень)
+3. Telegram Bot API (інтерфейс користувача)
+4. Admin Panel (Flask/Django для адміністраторів)
+5. Cloud Storage (AWS S3 для зображень товарів)
+
+
+📝 Інструкція для розробника
+# Telegram Shop Bot - Документація розгортання
+
+## 🛠 Вимоги до системи
+- Python 3.10+
+- SQLite 3
+- Git
+- Telegram Bot Token
+
+## 🚀 Швидкий старт
+
+1. Клонування репозиторію
+   git clone https://github.com/SerHino/telegram-shop-bot.git
+   cd telegram-shop-bot
+2. Налаштування віртуального середовища
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   venv\Scripts\activate     # Windows
+3. Встановлення залежностей
+   pip install -r requirements.txt
+4. Конфігурація
+   Створіть файл .env у папці data/:
+   BOT_TOKEN=ваш_токен
+   ADMIN_ID=ваш_telegram_id
+   DB_PATH=data/database.db
+5. Ініціалізація БД
+   python -c "from utils.db.storage import init_db; init_db()"
+6. Запуск бота
+   python app.py
+   
+🔧 Основні команди
+Команда	      Опис
+make migrate	Застосування міграцій БД
+make test	   Запуск unit-тестів
+make deploy	   Деплой на сервер
+
